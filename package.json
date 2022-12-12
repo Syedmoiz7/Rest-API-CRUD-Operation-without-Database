@@ -18,6 +18,9 @@
   "homepage": "https://github.com/Syedmoiz7/Rest-API-without-Database#readme",
   "description": "",
   "dependencies": {
-    "express": "^4.18.2"
+    "axios": "^1.2.1",
+    "express": "^4.18.2",
+    "formik": "^2.2.9",
+    "yup": "^0.32.11"
   }
 }
