@@ -6,7 +6,7 @@ const app = express()
 const port = process.env.PORT || 5000
 
 app.use(cors());
-app.use(epxress.json());
+app.use(express.json());
 
 let products = [] // connect with mongodb
 

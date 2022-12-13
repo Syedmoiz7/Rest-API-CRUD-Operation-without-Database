@@ -1,11 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
-import ClientSide from './components';
+import ClientSide from './components/index.jsx';
 
 function App() {
   return (
     <div className="App">
-      <ClientSide/>
+      <ClientSide />
     </div>
   );
 }
