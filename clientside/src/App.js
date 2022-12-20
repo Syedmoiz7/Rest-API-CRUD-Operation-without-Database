@@ -1,10 +1,10 @@
 import './App.css';
-import ClientSide from './components/index.jsx';
+import Render from './components/index.jsx';
 
 function App() {
   return (
     <div className="App">
-      <ClientSide />
+      <Render />
     </div>
   );
 }

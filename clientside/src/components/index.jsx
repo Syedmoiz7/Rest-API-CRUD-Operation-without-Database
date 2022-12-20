@@ -4,17 +4,17 @@ import axios from "axios";
 
 
 
-function ClientSide() {
+function Render() {
 
     let baseUrl = "";
     if (window.location.href.split(":")[0] === "http") {
-        baseUrl = "http://localhost:3000";
+        baseUrl = "http://localhost:5000";
     }
 
     const myFormik = useFormik({
         initialValues: {
             productName: '',
-            productprice: '',
+            productPrice: '',
             productDescription: ''
         },
         validationSchema:
@@ -26,9 +26,9 @@ function ClientSide() {
                     .max(20, "please enter within 20 characters "),
 
                 productPrice: yup
-                    .string('Enter your product price')
-                    .required('Product price is required')
-                    .postitive("Enter positive product price "),
+                    .number('Enter your product price')
+                    .positive("Enter positive product price ")
+                    .required('Product price is required'),
 
                 productDescription: yup
                     .string('Enter your product description')
@@ -40,7 +40,11 @@ function ClientSide() {
         onSubmit: (values) => {
             console.log("values: ", values);
 
-            axios.post(`${baseUrl}/product`)
+            axios.post(`${baseUrl}/product`, {
+                name: values.productName,
+                price: values.productPrice,
+                description: values.productDescription
+            })
                 .then(response => {
                     console.log("response: ", response.data);
                 })
@@ -51,7 +55,7 @@ function ClientSide() {
     });
 
     return (
-        <>
+        <div>
             <form onSubmit={myFormik.handleSubmit}>
                 <input
                     id="productName"
@@ -102,8 +106,8 @@ function ClientSide() {
 
             <br />
             <br />
-        </>
+        </div>
     )
 }
 
-export default ClientSide;
+export default Render;
