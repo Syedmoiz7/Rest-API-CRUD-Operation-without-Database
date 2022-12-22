@@ -36,9 +36,13 @@ function Render() {
         }
     }
 
-    const editMode = async (product) => {
+    const editMode =  (product) => {
         setIsEditMode(!isEditMode)
         setEditingProduct(product)
+
+        editFormik.setFieldValue("productName", product.name)
+        editFormik.setFieldValue("productPrice", product.price)
+        editFormik.setFieldValue("productDescription", product.description)
     }
 
     useEffect(() => {
@@ -123,7 +127,7 @@ function Render() {
         onSubmit: (values) => {
             console.log("values: ", values);
 
-            axios.put(`${baseUrl}/product/${values.id}`, {
+            axios.put(`${baseUrl}/product/${editingProduct.id}`, {
                 name: values.productName,
                 price: values.productPrice,
                 description: values.productDescription
@@ -204,7 +208,7 @@ function Render() {
                         }}>Delete</button>
 
                         <button onClick={() => {
-                            editMode(eachProduct.id)
+                            editMode(eachProduct)
                         }}>Edit</button>
 
                         {(isEditMode && editingProduct.id === eachProduct.id) ?
@@ -254,7 +258,7 @@ function Render() {
                                     }
 
                                     <br />
-                                    <button type="submit"> Add Product </button>
+                                    <button type="submit"> Submit </button>
                                 </form>
                             </div>
                             :
